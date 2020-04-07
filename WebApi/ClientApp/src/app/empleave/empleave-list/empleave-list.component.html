@@ -1,0 +1,50 @@
+<h3 class="text-center" style="padding: 15px;">Leave List</h3>
+<div class="card">
+    <div class='card-header'>
+      <div class='row' style="padding:10px">
+        <div class='col-md-2'>Search:</div>
+        <div class='col-md-4'>Employee Name
+            <input type='text' [(ngModel)]='searchName' />
+        </div>
+        <div class='col-md-4'>Leave Type
+          <input type='text' [(ngModel)]='searchLeave' />
+      </div>
+        </div>
+      </div>
+<div class='table-responsive'>
+    <table class='table' *ngIf='e1'>
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Leave Balance</th>
+          <th>Leave Type</th>
+          <th>Number of Days</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let emp of e1 | empleaveFilter:searchName:searchLeave'>
+          <td>{{emp.emp_name}}</td>
+          <td>{{emp.start}}</td>
+          <td>{{emp.end}}</td>
+          <td>10</td> 
+          <td>{{emp.leave_name}}</td>
+          <td>{{calDays(emp.start, emp.end)}}</td>
+          <td>{{emp.status}}</td>
+          <td>
+            <div class="form-group">
+            <select class="form-control" [(ngModel)]='emp.status' (ngModelChange)="filterItemsOfType(emp.elid)">
+                <option value="pending" disabled>pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

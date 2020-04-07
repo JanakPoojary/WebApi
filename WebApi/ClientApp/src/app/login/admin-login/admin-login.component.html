@@ -1,0 +1,19 @@
+<div class="container">
+    <div>
+        <div class="d-flex justify-content-center" style="padding: 2em;">
+            <h3>Admin login</h3>
+        </div>
+       
+        <div class="border border-secondary" style="padding: 2em;">
+    <form (submit)="login()">
+    <div class="form-group">
+      <label for="l_email" >Email address</label>
+      <input type="email" class="form-control" name="l_email" [(ngModel)]='email' required #emailField="ngModel">
+      <div [hidden]="emailField.valid || emailField.untouched" class="alert alert-danger">Enter an Email</div>
+      <div *ngIf='message' class="alert alert-danger">{{message}}</div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #563d7c" [routerLink]="['/adminDashboard']">Login</button>
+  </form>
+  </div>
+</div>
+</div>

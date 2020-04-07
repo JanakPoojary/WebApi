@@ -1,0 +1,40 @@
+<h3 class="text-center" style="padding: 10px;">Employee List</h3>
+<div class='card'>
+    <div class='card-header'>
+      <div class='row' style="padding:10px">
+        <div class='col-md-1'>Search :</div>
+        <div class='col-md-2'>Employee Name</div>
+        <div class='col-md-7'>
+            <input type='text' [(ngModel)]='searchFilter' />
+        </div>
+        <div class='col-md-2'>
+        <button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/adminDashboard/employeeAdd']">
+            Add Employee
+</button>
+</div>
+    </div>
+      <div class='table-responsive'>
+        <table class='table' *ngIf='e1'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Date Of Joining</th>
+              <th>Date Of Birth</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let emp of e1 | employeeFilter:searchFilter'>
+              <td>{{emp.e_name}}</td>
+              <td>{{emp.e_email}}</td>
+              <td>{{emp.e_doj}}</td>
+              <td>{{emp.e_dob}}</td>
+              <td><button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/adminDashboard/employeeEdit',emp.e_id]">Edit</button></td>
+              <td><button class='btn btn-primary' style="background-color: #563d7c;" (click)="delete(emp.e_id)">Delete</button></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>

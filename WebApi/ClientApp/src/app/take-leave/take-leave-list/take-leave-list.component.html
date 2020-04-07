@@ -1,0 +1,36 @@
+<h3 class="text-center" style="padding: 15px;">My Leaves</h3>
+<div class='card'>
+    <div class='card-header'>
+      <div class="row" style="padding-bottom:10px">
+        <div class="col-md-4"><h5>Leave Balance</h5></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" *ngFor='let pl of leaveleft() | keyvalue'>{{pl.key}} : {{pl.value}}</div>
+        <div class="col-md-3">
+          <button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/employeeDashboard/takeLeave']">
+            Apply
+</button>
+        </div>
+      </div>
+    </div>
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Leave Dates</th>
+              <th>Leave Type</th>
+              <th>Number of days</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let emp of filterItemsOfType()'>
+              <td>{{emp.start}} to {{emp.end}}</td> 
+              <td>{{emp.leave_name}}</td>
+              <td>{{calDays(emp.start, emp.end)}}</td>
+              <td>{{emp.status}}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>

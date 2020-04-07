@@ -1,0 +1,24 @@
+<body>
+  <div class="row" style="background-color:#563d7c;">
+    <div class="col-md-10">
+      <h1 style="padding:1rem;color:#FFFFFF">Leave Management</h1>
+    </div>
+    <div class="col-md-2" style="padding:1rem;">
+      <button type="button" class="btn btn-primary" style="background-color: #FFFFFF;color:#563d7c;"(click)="logout()">Logout</button>
+    </div>
+  </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/employeeDashboard/employeeProfile']">MyProfile</button>
+            <button type="button" class="list-group-item list-group-item-action" [routerLink]="['/employeeDashboard/takeLeaveList']">Leave</button>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </body>
+  

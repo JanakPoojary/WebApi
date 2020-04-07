@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+      <h3>Profile</h3>
+    </div>
+    <div style="padding:10px;">
+      <button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/employeeDashboard/employeeProfileEdit',emp1.e_id]">
+          Edit Details
+</button>
+</div>
+    <div class="card-body">
+        <div class='table-responsive'>
+            <table class='table'>
+              <tbody>
+                <tr>
+                  <td><strong>Name : &nbsp;&nbsp;</strong>{{emp1.e_name}}</td>
+                  <td><strong>Date Of Joining : &nbsp;</strong>{{emp1.e_doj}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Email : &nbsp;&nbsp;</strong>{{emp1.e_email}}</td>
+                  <td><strong>Date Of Birth : &nbsp;&nbsp;</strong>{{emp1.e_dob}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Apply Leave</h3>
+        <button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/employeeDashboard/takeLeaveList']">Back</button>
+    </div>
+<div class="card-body">
+    <form #form="ngForm">
+        <div class="container">
+        <input type="hidden" name="id"/>
+        
+        <div class="form-group row">
+        <label class="col-md-2" for="lt">Leave Type : &nbsp;</label>
+        <select id="lt" name="lt" [(ngModel)]='leavetype'>
+          <option [value]='l.l_name' *ngFor='let l of e1'>{{l.l_name}}</option>
+        </select>
+        </div>
+        <div class="form-group row">
+        <label class="col-md-2" for="fdate">From Date : &nbsp;</label>
+        <input type="date" id="fdate" name="fdate" [(ngModel)]='start'>
+        </div>
+        <div class="form-group row">
+        <label class="col-md-2" for="tdate">To Date : &nbsp;</label>
+        <input type="date" id="tdate" name="tdate" [(ngModel)]='end'>
+        </div>
+        <input class='btn btn-primary' type="button" value="Save" style="background-color: #563d7c;" (click)='apply()'>
+        </div>
+      </form>
+    </div>
+    </div>  

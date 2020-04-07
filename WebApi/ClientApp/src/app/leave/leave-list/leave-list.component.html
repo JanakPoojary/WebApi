@@ -1,0 +1,28 @@
+<h3 class="text-center" style="padding: 15px;">Leave Configuration</h3>
+<div class='card'>
+    <div class='card-header'>
+        <button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/adminDashboard/leaveAdd']">
+            Add Leave
+</button>
+    </div>
+      <div class='table-responsive'>
+        <table class='table' *ngIf='e1'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Number of days</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let emp of e1'>
+              <td>{{emp.l_name}}</td> 
+              <td>{{emp.no_of_days}}</td>
+              <td><button class='btn btn-primary' style="background-color: #563d7c;" [routerLink]="['/adminDashboard/leaveEdit',emp.l_id]">Edit</button></td>
+              <td><button class='btn btn-primary' style="background-color: #563d7c;" (click)="delete(emp.l_id)">Delete</button></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
