@@ -4,6 +4,7 @@ import { EmployeeDataService } from '../employee-data.service';
 import { Router } from '@angular/router';
 import { EmpleaveDataService } from 'src/app/empleave/empleave-data.service';
 import { Empleave } from 'src/app/empleave/empleave.model';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -18,6 +19,9 @@ export class EmployeeListComponent implements OnInit {
   e2:Array<Empleave>;
   nid:number;
   ngOnInit(): void {
+     this.fetchData();
+  }
+  fetchData(){
     this.employeedata.getEmployees().subscribe(
       e1 => {
         return this.e1 = e1;
@@ -29,7 +33,7 @@ export class EmployeeListComponent implements OnInit {
         return this.e2 = e2;
       },
       error => this.errorMessage = <any>error
-    ); 
+    );
   }
   delete(id:number){
     if(confirm("This will delete all the leaves taken by the employee before deleting the employee. Proceed?")){
@@ -41,9 +45,9 @@ export class EmployeeListComponent implements OnInit {
         }
       }
     }
-  }
     this.employeedata.deleteEmployee(id);
-    this.route.navigate(['/adminDashboard/employeeList']);
-    this.ngOnInit();
+    this.fetchData();
+    window.location.reload();
+  }
   }
 }

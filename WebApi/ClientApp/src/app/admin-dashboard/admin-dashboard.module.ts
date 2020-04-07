@@ -35,7 +35,7 @@ import { LeaveEditComponent } from '../leave/leave-edit/leave-edit.component';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-        { path: 'adminDashboard', component: AdminDashboardComponent,canActivate: [AdminAuthGuard],children:[
+        { path: 'adminDashboard', component: AdminDashboardComponent,children:[
         {path:'',redirectTo:'employeeList',pathMatch:'full'},
         { path: 'employeeAdd', component: EmployeeAddComponent },
         { path: 'employeeList', component: EmployeeListComponent },

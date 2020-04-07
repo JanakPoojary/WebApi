@@ -19,6 +19,9 @@ export class LeaveListComponent implements OnInit {
   e2:Array<Empleave>;
   nid:number;
   ngOnInit(): void {
+    this.fetchData();
+  }
+  fetchData(){
     this.leavedata.getLeaves().subscribe(
       e1 => {
         return this.e1 = e1;
@@ -42,9 +45,9 @@ delete(id:number){
         }
       }
     }
+    this.leavedata.deleteLeave(id);
+    this.fetchData();
+    window.location.reload();
+    }
   }
-this.leavedata.deleteLeave(id);
-this.route.navigate(['/adminDashboard/leaveList']);
-this.ngOnInit();
-}
 }

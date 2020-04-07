@@ -14,7 +14,6 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
   }
   logout(){
-    this.Auth.givenEmail="a";
     this.router.navigate(['/welcome']);
 }
 

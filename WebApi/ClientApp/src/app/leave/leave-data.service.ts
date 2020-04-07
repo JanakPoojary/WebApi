@@ -26,7 +26,7 @@ export class LeaveDataService {
         return this.getLeaves();
       }
     );
-this.route.navigate(['/adminDashboard/employeeList']);
+this.route.navigate(['/adminDashboard/leaveList']);
   }
 
   deleteLeave(id:number):void{
@@ -38,7 +38,6 @@ this.route.navigate(['/adminDashboard/employeeList']);
           return this.getLeaves();
         }
       );
-      this.route.navigate(['/adminDashboard/employeeList']);
     }
   }
 

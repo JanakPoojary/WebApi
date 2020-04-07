@@ -41,8 +41,6 @@ export class EmployeeDataService {
         }
       );
     }
-    this.route.navigate(['/adminDashboard/employeeAdd']);
-    this.route.navigate(['/adminDashboard/employeeList']);
   }
 
 

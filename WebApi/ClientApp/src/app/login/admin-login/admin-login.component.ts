@@ -15,9 +15,9 @@ export class AdminLoginComponent implements OnInit {
     
   }
   login(){
-    this.Auth.givenEmail=this.email;
-    this.router.navigate(['/adminDashboard']);
-    if(this.email!='admin@gmail.com'){
+    if(this.email=='admin@gmail.com'){
+      this.router.navigate(['/adminDashboard/employeeList']);
+    }else{
       this.message="This is not the correct Admin Email Id";
     }
 }
