@@ -58,11 +58,6 @@ export class EmpleaveListComponent implements OnInit {
 delete(id:number){
 this.employeedata.deleteEmpLeave(id);
 }
-// pendingLeave(i:number){
-//     this.e1[i].leave_left=this.e1[i].leave_total-this.calDays(this.e1[i].start,this.e1[i].end);
-//     this.e1[i].leave_total=this.e1[i].leave_left;
-//     return this.e1[i].leave_left;
-// }
 leaveleft(){
   var a={};
   var employee=[];
