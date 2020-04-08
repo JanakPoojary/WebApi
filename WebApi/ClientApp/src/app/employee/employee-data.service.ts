@@ -33,8 +33,7 @@ export class EmployeeDataService {
 
   deleteEmployee(id:number):void{
     if(confirm("Delete this employee?")){
-      const durl=`https://localhost:44397/api/EmployeeDetails/${id}`;
-      this.http.delete(durl,{ responseType: 'text' }).subscribe(
+      this.http.delete(this.url+`/${id}`,{ responseType: 'text' }).subscribe(
         ()=>{
           console.log("One employee deleted successfully.");
           return this.getEmployees();
@@ -52,8 +51,7 @@ export class EmployeeDataService {
   }
   
   getEmployee(id:number):Observable<employee>{
-    const eurl=`https://localhost:44397/api/EmployeeDetails/${id}`;
-    return this.http.get<employee>(eurl).pipe(
+    return this.http.get<employee>(this.url+`/${id}`).pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

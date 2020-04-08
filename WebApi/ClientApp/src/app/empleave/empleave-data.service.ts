@@ -34,8 +34,7 @@ export class EmpleaveDataService {
   }
 
   deleteEmpLeave(id:number):void{
-      const durl=`https://localhost:44397/api/EmpLeaves/${id}`;
-      this.http.delete(durl,{ responseType: 'text' }).subscribe(
+      this.http.delete(this.url+`/${id}`,{ responseType: 'text' }).subscribe(
         ()=>{
           return this.getEmpLeaves();
         }
@@ -51,8 +50,7 @@ export class EmpleaveDataService {
     );
   }
   getEmpLeave(id:number):Observable<Empleave>{
-    const eurl=`https://localhost:44397/api/EmpLeaves/${id}`;
-    return this.http.get<Empleave>(eurl).pipe(
+    return this.http.get<Empleave>(this.url+`/${id}`).pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

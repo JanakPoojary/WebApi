@@ -31,8 +31,7 @@ this.route.navigate(['/adminDashboard/leaveList']);
 
   deleteLeave(id:number):void{
     if(confirm("Delete this leave?")){
-      const durl=`https://localhost:44397/api/LeaveDetails/${id}`;
-      this.http.delete(durl,{ responseType: 'text' }).subscribe(
+      this.http.delete(this.url+`/${id}`,{ responseType: 'text' }).subscribe(
         ()=>{
           console.log("One leave deleted successfully.");
           return this.getLeaves();
@@ -49,8 +48,7 @@ this.route.navigate(['/adminDashboard/leaveList']);
     );
   }
   getLeave(id:number):Observable<leave>{
-    const eurl=`https://localhost:44397/api/LeaveDetails/${id}`;
-    return this.http.get<leave>(eurl).pipe(
+    return this.http.get<leave>(this.url+`/${id}`).pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
