@@ -10,19 +10,19 @@
         
         <div class="form-group row">
         <label class="col-md-2" for="lt">Leave Type : &nbsp;</label>
-        <select id="lt" name="lt" [(ngModel)]='leavetype'>
+        <select id="lt" name="lt" [(ngModel)]='leavetype' required>
           <option [value]='l.l_name' *ngFor='let l of e1'>{{l.l_name}}</option>
         </select>
         </div>
         <div class="form-group row">
         <label class="col-md-2" for="fdate">From Date : &nbsp;</label>
-        <input type="date" id="fdate" name="fdate" [(ngModel)]='start'>
+        <input type="date" id="fdate" name="fdate" [(ngModel)]='start' required>
         </div>
         <div class="form-group row">
         <label class="col-md-2" for="tdate">To Date : &nbsp;</label>
-        <input type="date" id="tdate" name="tdate" [(ngModel)]='end'>
+        <input type="date" id="tdate" name="tdate" [(ngModel)]='end' required>
         </div>
-        <input class='btn btn-primary' type="button" value="Save" style="background-color: #563d7c;" (click)='apply()'>
+        <input [disabled]="!form.valid" class='btn btn-primary' type="button" value="Save" style="background-color: #563d7c;" (click)='apply()'>
         </div>
       </form>
     </div>

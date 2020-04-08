@@ -16,26 +16,31 @@
       <input type="hidden" name="id" [value]='employee1.e_id'/>
     <div class="form-group row">
     <label class="col-md-4" for="fname">Name : </label>
-    <input type="text" id="fname" name="fname" [(ngModel)]='employee1.e_name'>
+    <input type="text" id="fname" name="fname" [(ngModel)]='employee1.e_name' required>
     </div>
     <div class="form-group row">
     <label class="col-md-4" for="lname">Date of Birth : </label>
-    <input type="date" id="lname" name="lname" [(ngModel)]='dob'>
+    <input type="date" id="lname" name="lname" [(ngModel)]='dob'required>
     </div>
     <div class="form-group row">
     <label class="col-md-4" for="email">Email : </label>
-    <input type="email" id="email" name="email" [(ngModel)]='employee1.e_email'>
+    <input type="email" id="email" name="email" [(ngModel)]='employee1.e_email'required pattern="[^ @]*@[^ @]*"
+    #email="ngModel">
+    <div class="alert-danger" *ngIf="email.errors && (email.dirty || email.touched)" style="padding:2px;">
+          <span *ngIf="email.errors.required">Email is required</span>
+          <span *ngIf="email.errors.pattern">Email formate is not valid</span>
+        </div>
     </div>
     <div class="form-group row">
     <label class="col-md-4" for="cno">Date of Joining :</label>
-    <input type="date" id="cno" name="cno" [(ngModel)]='doj'>
+    <input type="date" id="cno" name="cno" [(ngModel)]='doj' required>
     </div>
     <div class="form-group row">
     <label class="col-md-4" for="uname">salary :</label>
-    <input type="number" id="uname" name="uname" [(ngModel)]='employee1.e_salary'>
+    <input type="number" id="uname" name="uname" [(ngModel)]='employee1.e_salary' required>
     </div>
 
-    <input class='btn btn-primary' type="button" value="Add" style="background-color: #563d7c;" (click)='add()'>
+    <input [disabled]="!form.valid" class='btn btn-primary' type="button" value="Add" style="background-color: #563d7c;" (click)='add()'>
     </div>
   </form>
 </div>
