@@ -4,6 +4,8 @@ import { EmpleaveDataService } from '../empleave-data.service';
 import { EmpleavePost } from '../empleave-post.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LeaveDataService } from 'src/app/leave/leave-data.service';
+import { leave } from 'src/app/leave/leave.model';
 
 @Component({
   selector: 'app-empleave-list',
@@ -16,8 +18,11 @@ export class EmpleaveListComponent implements OnInit {
   errorMessage:string;
   lstatus:string;
   url:string;
-  constructor(private employeedata:EmpleaveDataService,private route:Router,private ar:ActivatedRoute, private http:HttpClient) {}
+  constructor(private employeedata:EmpleaveDataService,private route:Router,private ar:ActivatedRoute,
+     private http:HttpClient,private ldata:LeaveDataService) {}
   e1:Array<Empleave>;
+  l1:Array<leave>;
+  y:Array<Empleave>;
   t1:Empleave;
   x:number;
   ep1:EmpleavePost={
@@ -32,6 +37,12 @@ export class EmpleaveListComponent implements OnInit {
     this.employeedata.getEmpLeaves().subscribe(
       e1 => {
         return this.e1 = e1;
+      },
+      error => this.errorMessage = <any>error
+    );
+    this.ldata.getLeaves().subscribe(
+      l1 => {
+        return this.l1 = l1;
       },
       error => this.errorMessage = <any>error
     );
@@ -52,6 +63,49 @@ this.employeedata.deleteEmpLeave(id);
 //     this.e1[i].leave_total=this.e1[i].leave_left;
 //     return this.e1[i].leave_left;
 // }
+leaveleft(){
+  var a={};
+  var employee=[];
+  var arr=[];
+  var uniqid=[];
+  for(var k=0;k<this.l1.length;k++){
+    a[this.l1[k].l_id]=0;
+  }
+  for(var m=0;m<this.e1.length;m++){
+    arr.push(this.e1[m].emp_id);
+  }
+    uniqid = Array.from(new Set(arr));
+    uniqid=uniqid.reverse();
+  for(var u=0;u<uniqid.length;u++){
+    this.y=[];
+    this.y=this.e1.filter(x => x.emp_id==uniqid[u]);
+    for(var i=0;i<this.y.length;i++){
+      for(var j in a){
+        if(this.y[i].leave_id==+j && this.y[i].status=="Approved"){
+          a[j]=a[j]+this.calDays(this.y[i].start, this.y[i].end);
+        }
+      }
+    }
+    var lf={};
+    for(var s=0;s<this.l1.length;s++){
+      for(var v=0;v<this.e1.length;v++){
+        if(this.e1[v].emp_id==uniqid[u]){
+          var name=this.e1[v].emp_name;
+        }
+      }
+      lf["AEmployee"]=name;
+      lf[this.l1[s].l_name]=this.l1[s].no_of_days-a[s+1];  
+    }
+    employee.push(lf);
+    a={};
+    for(var k=0;k<this.l1.length;k++){
+      a[this.l1[k].l_id]=0;
+    }
+    lf={};
+  }
+    
+  return JSON.parse(JSON.stringify(employee));
+}
 
 approve(){
   this.ep1.el_id=this.t1.elid;
