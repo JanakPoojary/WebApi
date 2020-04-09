@@ -24,6 +24,8 @@ export class LeaveAddComponent implements OnInit {
   
   add(){
     this.leavedata.addLeave(this.leave1);
-    this.route.navigate(['/adminDashboard/leaveList']);
+    this.route.navigate(['/adminDashboard/leaveList']).then(() => {
+      window.location.reload();
+    });
   }
 }

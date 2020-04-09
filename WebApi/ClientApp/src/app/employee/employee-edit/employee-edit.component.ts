@@ -39,6 +39,8 @@ export class EmployeeEditComponent implements OnInit {
           return this.employeedata.getEmployees();
         }
       );
-      this.route.navigate(['/adminDashboard/employeeList']);
+      this.route.navigate(['/adminDashboard/employeeList']).then(() => {
+        window.location.reload();
+      });
     }
   } 

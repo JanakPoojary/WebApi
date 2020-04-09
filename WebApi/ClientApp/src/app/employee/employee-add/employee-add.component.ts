@@ -32,7 +32,9 @@ export class EmployeeAddComponent implements OnInit {
     this.employee1.e_doj=this.doj.toString();
     this.employee1.e_dob=this.dob.toString();
     this.employeedata.addEmployee(this.employee1);
-    this.route.navigate(['/adminDashboard/employeeList']);
+    this.route.navigate(['/adminDashboard/employeeList']).then(() => {
+      window.location.reload();
+    });
   }
 
 }

@@ -35,7 +35,9 @@ export class LeaveEditComponent implements OnInit {
         return this.leavedata.getLeaves();
       }
     );
-    this.route.navigate(['/adminDashboard/leaveList']);
+    this.route.navigate(['/adminDashboard/leaveList']).then(() => {
+      window.location.reload();
+    });
   }
 
 }
