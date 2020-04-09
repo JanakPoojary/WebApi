@@ -48,8 +48,9 @@ export class TakeLeaveComponent implements OnInit {
     this.empleave1.el_start= this.start.toString();
     this.empleave1.el_end= this.end.toString();
     this.empleavedata.addEmpLeave(this.empleave1);
-    this.ngOnInit();
-    this.route.navigate(['/employeeDashboard/takeLeaveList']);
+    this.route.navigate(['/employeeDashboard/employeeProfile']).then(() => {
+      this.route.navigate(['/employeeDashboard/takeLeaveList']);
+    });
   }
 }
 }
