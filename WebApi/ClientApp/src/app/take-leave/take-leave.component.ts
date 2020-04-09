@@ -37,6 +37,13 @@ export class TakeLeaveComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+  calDays(ds:string,de:string):number{
+    var dateFirst = new Date(ds);
+    var dateSecond = new Date(de);
+    var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays+1;
+  }
   apply(){
     if(this.e1){
     for (var i = 0; i < this.e1.length; i++) {
@@ -47,10 +54,14 @@ export class TakeLeaveComponent implements OnInit {
     this.empleave1.empId=this.auth.loggedInUserId;
     this.empleave1.el_start= this.start.toString();
     this.empleave1.el_end= this.end.toString();
-    this.empleavedata.addEmpLeave(this.empleave1);
+    if(this.calDays(this.start.toString(),this.end.toString())>this.e1.filter(x=>x.l_id==this.empleave1.lveId)[0].no_of_days){
+      alert("You cannot apply for more than " + this.e1.filter(x=>x.l_id==this.empleave1.lveId)[0].no_of_days + " days for " +this.e1.filter(x=>x.l_id==this.empleave1.lveId)[0].l_name);
+    }else{
+    this.empleavedata.addEmpLeave(this.empleave1); 
     this.route.navigate(['/employeeDashboard/employeeProfile']).then(() => {
       this.route.navigate(['/employeeDashboard/takeLeaveList']);
     });
+  }
   }
 }
 }

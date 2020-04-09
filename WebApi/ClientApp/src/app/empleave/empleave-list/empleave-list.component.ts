@@ -59,6 +59,7 @@ delete(id:number){
 this.employeedata.deleteEmpLeave(id);
 }
 leaveleft(){
+  if(this.e1 && this.l1){
   var a={};
   var employee=[];
   var arr=[];
@@ -100,6 +101,7 @@ leaveleft(){
   }
     
   return JSON.parse(JSON.stringify(employee));
+}
 }
 
 approve(){

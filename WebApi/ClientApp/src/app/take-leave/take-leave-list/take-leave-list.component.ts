@@ -35,9 +35,12 @@ export class TakeLeaveListComponent implements OnInit {
     );
   }
   filterItemsOfType(){
+    if(this.e1){
     return this.e1.filter(x => x.emp_id == this.userid);
+    }
 }
 leaveleft(){
+  if(this.e1 && this.l1){
   var a={};
   for(var k=0;k<this.l1.length;k++){
     a[this.l1[k].l_id]=0;
@@ -55,6 +58,7 @@ leaveleft(){
     lf[this.l1[s].l_name]=this.l1[s].no_of_days-a[s+1];
   }
   return lf;
+}
 }
 calDays(ds:string,de:string):number{
   var dateFirst = new Date(ds);
