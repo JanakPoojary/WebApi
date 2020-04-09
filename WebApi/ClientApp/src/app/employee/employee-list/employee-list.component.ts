@@ -46,7 +46,6 @@ export class EmployeeListComponent implements OnInit {
       }
     }
     this.employeedata.deleteEmployee(id);
-    this.fetchData();
     window.location.reload();
   }
   }

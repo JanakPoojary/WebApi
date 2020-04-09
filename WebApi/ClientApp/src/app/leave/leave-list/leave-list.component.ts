@@ -46,7 +46,6 @@ delete(id:number){
       }
     }
     this.leavedata.deleteLeave(id);
-    this.fetchData();
     window.location.reload();
     }
   }
