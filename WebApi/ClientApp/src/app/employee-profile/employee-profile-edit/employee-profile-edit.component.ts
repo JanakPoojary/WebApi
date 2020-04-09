@@ -39,7 +39,9 @@ export class EmployeeProfileEditComponent implements OnInit {
           return this.employeedata.getEmployees();
         }
       );
-      this.route.navigate(['/employeeDashboard/employeeProfile']);
+      this.route.navigate(['/employeeDashboard/takeLeaveList']).then(() => {
+        this.route.navigate(['/employeeDashboard/employeeProfile']);
+      });
     }
 
 }
